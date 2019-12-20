@@ -72,3 +72,8 @@ backend bk_ssl_default
    server server-vpn 127.0.0.1:端口1 send-proxy-v2
    server server-web 127.0.0.1:端口2 check
  ```  
+
+
+listen-proxy-proto = true  
+
+https://wwww.lvmoo.com/1110.love
