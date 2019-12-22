@@ -4,11 +4,12 @@
 这里在此假设，SSR的转发端口是20000，Ocserv监听10443，Nginx监听5000，V2Ray监听10000
 
 ## 配置修改  
+* SSR后端配置修改，将user-config.json端口转发修改如下  
 ```  
-"redirect": ["*:443#127.0.0.1:10000"], // 重点：将 web 流量转发到本地的 haproxy 端口
+"redirect": ["*:443#127.0.0.1:20000"], // 重点：将 web 流量转发到本地的 haproxy 端口
 ```  
 
-
+* 安装Haproxy `yum install haproxy -y` ，将 `/etc/haproxy/haproxy.cfg` 修改如下
 
 ```  
 global
@@ -70,11 +71,18 @@ backend bk_ssl_default
    use-server server-vpn if !vpn-app !web-app
 
    option ssl-hello-chk
-   server server-vpn 127.0.0.1:端口1 send-proxy-v2
-   server server-web 127.0.0.1:端口2 check
- ```  
+   server server-vpn 127.0.0.1:10443 send-proxy-v2
+   server server-web 127.0.0.1:5000 check
+ 
+# 两个域名最好不要一样
+```  
 
-
+* 安装好Ocserv，并测试通过，将 `/etc/ocserv/ocserv.conf` 添加如下代码  
+```  
 listen-proxy-proto = true  
+```  
 
+至此，ocserv端口复用配置完成。  
+后续请参考V2rayforsspanel
+Reference:  
 https://wwww.lvmoo.com/1110.love
