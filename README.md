@@ -63,8 +63,8 @@ frontend www-https
 
 backend bk_ssl_default
    mode tcp
-   acl vpn-app req_ssl_sni -i 域名1
-   acl web-app req_ssl_sni -i 域名2
+   acl vpn-app req_ssl_sni -i 域名1    #Anyconnect连接域名
+   acl web-app req_ssl_sni -i 域名2    #网站访问域名
 
    use-server server-vpn if vpn-app
    use-server server-web if web-app
@@ -74,7 +74,6 @@ backend bk_ssl_default
    server server-vpn 127.0.0.1:10443 send-proxy-v2
    server server-web 127.0.0.1:5000 check
  
-# 两个域名最好不要一样
 ```  
 
 * 安装好Ocserv，并测试通过，将 `/etc/ocserv/ocserv.conf` 添加如下代码  
