@@ -75,6 +75,9 @@ backend bk_ssl_default
    server server-web 127.0.0.1:5000 check
  
 ```  
+systemctl start haproxy  
+systemctl enable haproxy  
+systemctl status haproxy  
 
 * 安装好Ocserv，并测试通过，将 `/etc/ocserv/ocserv.conf` 添加如下代码  
 ```  
