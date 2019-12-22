@@ -1,6 +1,6 @@
 # 前言
 目前的转发逻辑：
-![](data/smaple1.jpg)
+![](/data/smaple1.jpg)
 
 
 
