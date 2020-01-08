@@ -6,7 +6,7 @@
 ## 配置修改  
 * SSR后端配置修改，将user-config.json端口转发修改如下  
 ```  
-"redirect": ["*:443#127.0.0.1:20000"], // 重点：将 web 流量转发到本地的 haproxy 端口
+"redirect": ["*:443#127.0.0.1:20000"], // 重点：将 web 流量转发到本地的 haproxy 端口，可以有多个转发以,分隔
 ```  
 
 * 安装Haproxy `yum install haproxy -y` ，将 `/etc/haproxy/haproxy.cfg` 修改如下
